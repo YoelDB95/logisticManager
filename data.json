@@ -1,0 +1,52 @@
+[
+	{
+		"address": "Av. Siempre Viva 742",
+		"name": "Juan Pérez",
+		"city": "Buenos Aires"
+	},
+	{
+		"address": "Calle Los Aromos 1540",
+		"name": "María González",
+		"city": "Córdoba"
+	},
+	{
+		"address": "Ruta 8 Km 55.5",
+		"name": "Carlos Fernández",
+		"city": "Pilar"
+	},
+	{
+		"address": "Boulevard San Martín 2200",
+		"name": "Lucía Romero",
+		"city": "Rosario"
+	},
+	{
+		"address": "Calle Las Heras 455",
+		"name": "Gabriel Ruiz",
+		"city": "Mendoza"
+	},
+	{
+		"address": "Av. Libertad 330",
+		"name": "Sofía López",
+		"city": "Mar del Plata"
+	},
+	{
+		"address": "Pasaje Colón 1280",
+		"name": "Matías Soria",
+		"city": "Salta"
+	},
+	{
+		"address": "Camino San Carlos 900",
+		"name": "Natalia Ortega",
+		"city": "San Juan"
+	},
+	{
+		"address": "Av. Roca 2155",
+		"name": "Diego Medina",
+		"city": "Neuquén"
+	},
+	{
+		"address": "Calle Alberdi 670",
+		"name": "Florencia Acosta",
+		"city": "La Plata"
+	}
+]
