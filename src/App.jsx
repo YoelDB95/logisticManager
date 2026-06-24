@@ -12,7 +12,7 @@ function App() {
   const [packages, setPackages] = useState([])
 
   useEffect(() => {
-    axios.get('http://localhost:3001/api/addresses').then(res => {
+    axios.get('http://localhost:3000/api/addresses').then(res => {
       if (res.data.length > 0) {
           setPackages(res.data)
       }
@@ -22,9 +22,9 @@ function App() {
   return (
     <>
       <Header />
-      {<FormLoadPackage packages={packages} setPackages={setPackages}/>}
+      {/*<FormLoadPackage packages={packages} setPackages={setPackages}/>*/}
       {/*<Dashboard packages={packages}/>*/}
-      {/*<MLScannerCrop />*/}
+      {<MLScannerCrop />}
     </>
   )
 }

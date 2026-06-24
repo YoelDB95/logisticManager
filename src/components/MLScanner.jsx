@@ -28,17 +28,13 @@ export default function MLScanner() {
       <h2>Escáner Mercado Libre</h2>
       <video
         ref={videoRef}
-        style={{
-          width: "100%",
-          maxWidth: "400px",
-          borderRadius: "12px",
-          border: "2px solid #ccc",
-        }}
+        className="scanner-video"
       />
 
-      <p>
-        <strong>Código detectado:</strong> {codigo}
-      </p>
+      <div className="scanner-result">
+        <h3>Código detectado:</h3>
+        <pre>{codigo || "Esperando..."}</pre>
+      </div>
     </div>
   );
 }

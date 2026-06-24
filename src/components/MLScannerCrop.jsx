@@ -86,24 +86,20 @@ export default function MLScannerCrop() {
     <div style={{ padding: 20 }}>
       <h2>Escáner ML con Recorte OCR</h2>
 
-      <div style={{ position: "relative", width: "100%", maxWidth: 400 }}>
+      <div className="video-wrapper">
         <video
           ref={videoRef}
           autoPlay
-          style={{ width: "100%", borderRadius: 8 }}
         />
 
         {/* Marco de recorte */}
         <div
+          className="crop-overlay"
           style={{
-            position: "absolute",
-            border: "2px solid #00ff88",
-            boxShadow: "0 0 10px #00ff88",
             left: `${crop.x * 100}%`,
             top: `${crop.y * 100}%`,
             width: `${crop.w * 100}%`,
             height: `${crop.h * 100}%`,
-            pointerEvents: "none"
           }}
         />
       </div>
@@ -111,14 +107,12 @@ export default function MLScannerCrop() {
       <canvas ref={canvasRef} style={{ display: "none" }} />
       <canvas ref={cropCanvasRef} style={{ display: "none" }} />
 
-      <div style={{ marginTop: 20 }}>
+      <div className="scanner-result">
         <h3>Código detectado:</h3>
         <pre>{barcode || "Esperando..."}</pre>
 
         <h3>Texto OCR (solo recorte):</h3>
-        <pre style={{ whiteSpace: "pre-wrap" }}>
-          {ocrText || "Procesando..."}
-        </pre>
+        <pre>{ocrText || "Procesando..."}</pre>
       </div>
     </div>
   );

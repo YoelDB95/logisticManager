@@ -46,21 +46,13 @@ export default function OCRCamera() {
       <video
         ref={videoRef}
         autoPlay
-        style={{ width: "50%", borderRadius: "12px" }}
+        className="ocr-video"
       />
 
       <button
         onClick={capturarYLeer}
         disabled={procesando}
-        style={{
-          marginTop: 10,
-          padding: 10,
-          background: procesando ? "#aaa" : "#4caf50",
-          color: "#fff",
-          border: "none",
-          borderRadius: "8px",
-          cursor: "pointer",
-        }}
+        className="ocr-btn"
       >
         {procesando ? "Leyendo..." : "Capturar y leer texto"}
       </button>
@@ -68,12 +60,7 @@ export default function OCRCamera() {
       <canvas ref={canvasRef} style={{ display: "none" }} />
 
       <pre
-        style={{
-          marginTop: 20,
-          background: "#eee",
-          padding: 10,
-          whiteSpace: "pre-wrap",
-        }}
+        className="ocr-result"
       >
         {texto}
       </pre>
