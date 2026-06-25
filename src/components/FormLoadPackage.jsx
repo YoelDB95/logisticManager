@@ -1,9 +1,11 @@
 import axios from "axios"
 import { useState } from "react"
+import MLScannerCrop from "./MLScannerCrop.jsx"
 import './FormLoadPackage.css'
 
 export const FormLoadPackage = ({ packages, setPackages }) => {
   const [data, setData] = useState({name: '', address: '', barcode: '', content: '', weight: '', dimension: '', city: ''})
+  const [showScanner, setShowScanner] = useState(false)
   
   const enable = data.name.length > 0 && data.address.length > 0 && data.barcode.length > 0
 
@@ -23,8 +25,11 @@ export const FormLoadPackage = ({ packages, setPackages }) => {
 
   const handleScanner = (e) => {
     e.preventDefault()
-    //llamar al escaner
-    setData({name: '', address: '', barcode: '', content: '', weight: '', dimension: ''})
+    setShowScanner(true)
+  }
+
+  const handleCloseScanner = () => {
+    setShowScanner(false)
   }
 
   return (
@@ -95,6 +100,15 @@ export const FormLoadPackage = ({ packages, setPackages }) => {
             <button type='submit' disabled={!enable} className='btn-submit'>Guardar Paquete</button>
           </div>
         </form>
+
+        {showScanner && (
+          <div className="modal-overlay" onClick={handleCloseScanner}>
+            <div className="modal-content" onClick={e => e.stopPropagation()}>
+              <button className="modal-close" onClick={handleCloseScanner}>&times;</button>
+              <MLScannerCrop />
+            </div>
+          </div>
+        )}
       </main>
     )
 } 
