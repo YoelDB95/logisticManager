@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { BrowserMultiFormatReader } from "@zxing/library";
+import './MLScanner.css'
 
 export default function MLScanner() {
   const videoRef = useRef(null);

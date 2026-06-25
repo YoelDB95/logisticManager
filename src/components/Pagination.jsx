@@ -1,3 +1,5 @@
+import './Pagination.css'
+
 export const Pagination = ({handlePage, page, packages, totalRows}) => {
     if (packages.length === 0) return
     

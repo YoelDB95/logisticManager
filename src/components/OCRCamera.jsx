@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import Tesseract from "tesseract.js";
+import './OCRCamera.css'
 
 export default function OCRCamera() {
   const videoRef = useRef(null);

@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Pagination } from "./Pagination"
+import './Dashboard.css'
 
 export const Dashboard = ({ packages}) => {
     const [filters, setFilters] = useState({packageStatus: '', date: '', consignee: ''})

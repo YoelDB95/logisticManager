@@ -1,0 +1,31 @@
+.pagination {
+	margin-top: 20px;
+	padding-top: 15px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.btn-pag {
+	display: flex;
+	gap: 10px;
+}
+
+.btn-pagination {
+	background: #334054;
+	border: 1px solid #ccc;
+	padding: 6px 12px;
+	border-radius: 6px;
+	cursor: pointer;
+	color: white;
+}
+
+.btn-pagination:hover:not(:disabled) {
+	background: #3d4d66;
+	border-color: #888;
+	transform: translateY(-1px);
+}
+
+.btn-pagination:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}

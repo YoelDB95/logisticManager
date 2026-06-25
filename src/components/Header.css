@@ -1,0 +1,35 @@
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem 2rem;
+	position: sticky;
+	top: 0;
+	backdrop-filter: blur(6px);
+	background: rgba(0, 0, 0, 0.4);
+	border-bottom: 1px solid var(--border-dark);
+}
+
+.header-title {
+	font-size: 1.25rem;
+	font-weight: bold;
+}
+
+nav {
+	display: flex;
+	gap: 1.5rem;
+}
+
+nav a {
+	color: #ccc;
+	text-decoration: none;
+	font-weight: 500;
+}
+
+nav a.active {
+	color: var(--primary);
+}
+
+nav a:hover {
+	color: #fff;
+}

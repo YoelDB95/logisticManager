@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { BrowserMultiFormatReader } from "@zxing/browser";
 import Tesseract from "tesseract.js";
+import './MLScannerCrop.css'
 
 const cropConfig = {
   x: 0.15,

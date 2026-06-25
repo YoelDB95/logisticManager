@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useState } from "react"
+import './FormLoadPackage.css'
 
 export const FormLoadPackage = ({ packages, setPackages }) => {
   const [data, setData] = useState({name: '', address: '', barcode: '', content: '', weight: '', dimension: '', city: ''})

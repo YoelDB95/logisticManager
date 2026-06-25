@@ -1,0 +1,42 @@
+.video-wrapper {
+	position: relative;
+	width: 100%;
+	max-width: 400px;
+	border-radius: 12px;
+	overflow: hidden;
+	border: 2px solid var(--border-dark);
+}
+
+.video-wrapper video {
+	width: 100%;
+	display: block;
+}
+
+.crop-overlay {
+	position: absolute;
+	border: 2px solid #00ff88;
+	box-shadow: 0 0 12px rgba(0, 255, 136, 0.3);
+	pointer-events: none;
+	border-radius: 4px;
+}
+
+.scanner-result {
+	margin-top: 20px;
+	padding: 15px;
+	background: var(--background-terciary);
+	border: 1px solid var(--border-dark);
+	border-radius: 8px;
+}
+
+.scanner-result h3 {
+	margin-bottom: 8px;
+	color: var(--muted);
+	font-size: 0.95rem;
+}
+
+.scanner-result pre {
+	margin: 0;
+	color: var(--text-light);
+	font-family: monospace;
+	white-space: pre-wrap;
+}

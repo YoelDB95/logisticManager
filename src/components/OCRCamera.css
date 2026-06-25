@@ -1,0 +1,41 @@
+.ocr-video {
+	width: 50%;
+	border-radius: 12px;
+	border: 2px solid var(--border-dark);
+	display: block;
+}
+
+.ocr-btn {
+	margin-top: 10px;
+	padding: 10px 20px;
+	background: #137fec;
+	color: #fff;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	font-weight: 600;
+}
+
+.ocr-btn:hover:not(:disabled) {
+	background: #1590ff;
+	transform: translateY(-1px);
+}
+
+.ocr-btn:disabled {
+	background: #444;
+	cursor: not-allowed;
+}
+
+.ocr-result {
+	margin-top: 20px;
+	background: var(--background-terciary);
+	border: 1px solid var(--border-dark);
+	border-radius: 8px;
+	padding: 15px;
+	white-space: pre-wrap;
+	color: var(--text-light);
+	font-family: monospace;
+	line-height: 1.5;
+	max-height: 300px;
+	overflow-y: auto;
+}
