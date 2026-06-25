@@ -1,0 +1,139 @@
+.dashboard-container {
+	max-width: 1000px;
+	margin: auto;
+}
+
+.main-dash {
+	max-width: 1200px;
+	margin: auto;
+}
+
+.main-header {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 20px;
+}
+
+.main-title {
+	font-size: 26px;
+	font-weight: 900;
+	margin: 0;
+}
+
+.main-subtitle {
+	color: #9dabb9;
+	margin: 4px 0 0 0;
+}
+
+.main-title-group {
+	display: flex;
+	flex-direction: column;
+}
+
+.summary-cards {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+	gap: 1rem;
+	margin: 1.5rem 0;
+}
+
+.summary-card {
+	background: var(--background-secondary);
+	border: 1px solid var(--border-dark);
+	border-radius: 10px;
+	padding: 1.25rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+}
+
+.summary-number {
+	font-size: 2rem;
+	font-weight: 900;
+}
+
+.summary-label {
+	color: var(--muted);
+	font-size: 0.85rem;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+.card-enruta .summary-number { color: #0f5132; }
+.card-entregado .summary-number { color: #137fec; }
+.card-pendiente .summary-number { color: #9b1d1d; }
+
+.table-container {
+	border-radius: 10px;
+	overflow: hidden;
+	border: 1px solid var(--card-border);
+	background: var(--panel-bg);
+}
+
+.table-scroll {
+	overflow-x: auto;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	min-width: 720px;
+}
+
+table thead {
+	background: #1c2127;
+}
+
+tbody {
+	background: var(--background-terciary);
+}
+
+table tbody tr:hover {
+	background: #1c2127;
+}
+
+table th,
+table td {
+	padding: 14px 12px;
+	text-align: left;
+	border-bottom: 1px solid #eef1f5;
+	font-size: 14px;
+}
+
+.bold {
+	font-weight: 700;
+}
+
+.btn-link {
+	background: none;
+	border: none;
+	color: #137fec;
+	cursor: pointer;
+}
+
+.btn-link:hover {
+	text-decoration: underline;
+	opacity: 0.85;
+}
+
+.td-muted {
+	color: var(--muted);
+}
+
+.td-actions {
+	text-align: right;
+}
+
+.badge {
+	display: inline-block;
+	padding: 4px 8px;
+	border-radius: 999px;
+	font-size: 12px;
+	font-weight: 700;
+}
+
+.badge-green {
+	background: #d1fae5;
+	color: #0f5132;
+}
