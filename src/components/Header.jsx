@@ -10,7 +10,6 @@ export const Header = () => {
                 <a href='#'>Dashboard</a>
                 <a href='#'>Envios</a>
                 <a href='#'>Cargar Paquetes</a>
-                <a href='#'>Reportes</a>
             </nav>
       </header>
     )

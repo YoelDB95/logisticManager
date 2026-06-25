@@ -1,8 +1,8 @@
 import { useState } from "react"
 import { Pagination } from "./Pagination"
-import './Dashboard.css'
+import './Delivery.css'
 
-export const Dashboard = ({ packages}) => {
+export const Delivery = ({ packages}) => {
     const [filters, setFilters] = useState({packageStatus: '', date: '', consignee: ''})
     const [page, setPage] = useState(0)
     const totalRows = 4
