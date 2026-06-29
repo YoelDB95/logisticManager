@@ -62,17 +62,18 @@ export const FormLoadPackage = ({ setPackages }) => {
                 <meta name="twitter:description" content="Registre un nuevo paquete en el sistema con escaneo de códigos de barras." />
             </Helmet>
         <main>
-        <div>
-          <div>
-            <h1 className="page-title">Cargar Nuevo Paquete</h1>
-            <p>
-              Complete la información a continuación para registrar un nuevo
-              paquete en el sistema.
-            </p>
+        <div className="form-page">
+          <div className="page-header">
+            <div>
+              <h1 className="dashboard-title">Cargar Nuevo Paquete</h1>
+              <p className="dashboard-subtitle">
+                Complete la información a continuación para registrar un nuevo
+                paquete en el sistema.
+              </p>
+            </div>
           </div>
-        </div>
 
-        <form onSubmit={onSubmitHandle} noValidate>
+        <form className="form-card" onSubmit={onSubmitHandle} noValidate>
           <section aria-label="Información del destinatario">
             <h2 className='section-title'>Informacion del destinatario</h2>
             <div className='line'></div>
@@ -148,8 +149,8 @@ export const FormLoadPackage = ({ setPackages }) => {
           </section>
 
           <div className='form-actions'>
-            <button type='button' className='btn-cancel'>Cancelar</button>
-            <button type='submit' disabled={!enable} className='btn-submit' aria-disabled={!enable}>Guardar Paquete</button>
+            <button type='button' className='btn-outline'>Cancelar</button>
+            <button type='submit' disabled={!enable} className='btn-primary' aria-disabled={!enable}>Guardar Paquete</button>
           </div>
         </form>
 
@@ -161,6 +162,7 @@ export const FormLoadPackage = ({ setPackages }) => {
             </div>
           </div>
         )}
+      </div>
       </main>
       </>
     )
