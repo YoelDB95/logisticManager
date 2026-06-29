@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async'
 import axios from "axios"
 import { useState } from "react"
 import MLScannerCrop from "./MLScannerCrop.jsx"
@@ -51,6 +52,15 @@ export const FormLoadPackage = ({ setPackages }) => {
   }
 
   return (
+        <>
+            <Helmet>
+                <title>Cargar Paquete — Logistic Manager</title>
+                <meta name="description" content="Registre un nuevo paquete en el sistema. Complete información del destinatario, detalles del paquete y escanee códigos de barras." />
+                <meta property="og:title" content="Cargar Paquete — Logistic Manager" />
+                <meta property="og:description" content="Registre un nuevo paquete en el sistema con escaneo de códigos de barras." />
+                <meta name="twitter:title" content="Cargar Paquete — Logistic Manager" />
+                <meta name="twitter:description" content="Registre un nuevo paquete en el sistema con escaneo de códigos de barras." />
+            </Helmet>
         <main>
         <div>
           <div>
@@ -152,5 +162,6 @@ export const FormLoadPackage = ({ setPackages }) => {
           </div>
         )}
       </main>
+      </>
     )
 } 

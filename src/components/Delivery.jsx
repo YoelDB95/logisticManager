@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async'
 import { useState } from "react"
 import { Pagination } from "./Pagination"
 import './Delivery.css'
@@ -52,7 +53,16 @@ export const Delivery = ({ packages}) => {
     }
     
     return (
-        <div className="dashboard-container">
+        <>
+            <Helmet>
+                <title>Envíos — Logistic Manager</title>
+                <meta name="description" content="Gestión de paquetes activos con filtros por estado, fecha y destinatario. Seguimiento de envíos en tiempo real." />
+                <meta property="og:title" content="Envíos — Logistic Manager" />
+                <meta property="og:description" content="Gestión de paquetes activos con filtros por estado, fecha y destinatario." />
+                <meta name="twitter:title" content="Envíos — Logistic Manager" />
+                <meta name="twitter:description" content="Gestión de paquetes activos con filtros por estado, fecha y destinatario." />
+            </Helmet>
+            <div className="dashboard-container">
             <header className="main-header">
                 <div className="main-title-group">
                     <p className="main-title">Panel de Gestión de Paquetes</p>
@@ -117,5 +127,6 @@ export const Delivery = ({ packages}) => {
                 <Pagination handlePage={handlePage} page={page} totalRows={totalRows} packages={filteredPackages}/>
             </main>
         </div>
+        </>
     )
 }

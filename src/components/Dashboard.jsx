@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async'
 import { useNavigate } from "react-router-dom"
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts'
 import './Dashboard.css'
@@ -52,7 +53,16 @@ export const Dashboard = ({ packages }) => {
 	const totalDist = statusData.reduce((s, d) => s + d.value, 0)
 
 	return (
-		<div className="dashboard">
+		<>
+			<Helmet>
+				<title>Panel de Control — Logistic Manager</title>
+				<meta name="description" content="Panel de administración con indicadores clave, rendimiento semanal, distribución de estados y actividad reciente." />
+				<meta property="og:title" content="Panel de Control — Logistic Manager" />
+				<meta property="og:description" content="Panel de administración con indicadores clave, rendimiento semanal, distribución de estados y actividad reciente." />
+				<meta name="twitter:title" content="Panel de Control — Logistic Manager" />
+				<meta name="twitter:description" content="Panel de administración con indicadores clave, rendimiento semanal, distribución de estados y actividad reciente." />
+			</Helmet>
+			<div className="dashboard">
 			<div className="page-header">
 				<div>
 					<h1 className="dashboard-title">Panel de Control</h1>
@@ -203,5 +213,6 @@ export const Dashboard = ({ packages }) => {
 				</div>
 			</section>
 		</div>
+		</>
 	)
 }

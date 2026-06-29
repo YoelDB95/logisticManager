@@ -1,6 +1,7 @@
 import './index.css'
 import { useEffect, useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import axios from 'axios'
 import { Header } from './components/Header.jsx'
 import { FormLoadPackage } from './components/FormLoadPackage.jsx'
@@ -22,6 +23,10 @@ function App() {
 
   return (
     <>
+      <Helmet>
+        <html lang="es" />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
       <SkipLink />
       <Header />
       <div id="main-content" tabIndex={-1}>

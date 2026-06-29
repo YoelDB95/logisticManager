@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 import './DriverDashboard.css'
 
@@ -63,7 +64,16 @@ export const DriverDashboard = ({ packages }) => {
 	const progreso = Math.min(Math.round((entregasHoy / metaDiaria) * 100), 100)
 
 	return (
-		<div className="driver-dashboard">
+		<>
+			<Helmet>
+				<title>Dashboard del Conductor — Logistic Manager</title>
+				<meta name="description" content="Panel del conductor con resumen de entregas, eficiencia de ruta, calificaciones y últimas entregas." />
+				<meta property="og:title" content="Dashboard del Conductor — Logistic Manager" />
+				<meta property="og:description" content="Resumen de desempeño con entregas hoy, eficiencia de ruta y últimas entregas." />
+				<meta name="twitter:title" content="Dashboard del Conductor — Logistic Manager" />
+				<meta name="twitter:description" content="Resumen de desempeño con entregas hoy, eficiencia de ruta y últimas entregas." />
+			</Helmet>
+			<div className="driver-dashboard">
 			<div className="dd-header">
 				<div>
 					<h1 className="dd-title">Resumen de Desempeño</h1>
@@ -245,5 +255,6 @@ export const DriverDashboard = ({ packages }) => {
 				</div>
 			</section>
 		</div>
+		</>
 	)
 }
