@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap');
+
 .driver-dashboard {
 	display: flex;
 	flex-direction: column;
@@ -7,28 +9,33 @@
 	padding: 24px;
 }
 
-.dd-header {
+.page-header {
 	display: flex;
 	justify-content: space-between;
-	align-items: flex-start;
+	align-items: flex-end;
+	margin-bottom: 24px;
 }
 
-.dd-title {
-	font-size: 1.5rem;
+.dashboard-title {
+	font-family: 'Hanken Grotesk', sans-serif;
+	font-size: 32px;
 	font-weight: 600;
+	line-height: 1.2;
 	color: #dae2fd;
 	margin: 0;
 }
 
-.dd-subtitle {
-	font-size: 0.875rem;
-	color: #87929a;
-	margin: 0.25rem 0 0;
+.dashboard-subtitle {
+	font-family: 'Inter', sans-serif;
+	font-size: 14px;
+	line-height: 1.5;
+	color: #bdc8d1;
+	margin: 4px 0 0;
 }
 
-.dd-actions {
+.page-actions {
 	display: flex;
-	gap: 0.5rem;
+	gap: 12px;
 }
 
 .dd-btn-download {

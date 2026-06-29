@@ -74,12 +74,12 @@ export const DriverDashboard = ({ packages }) => {
 				<meta name="twitter:description" content="Resumen de desempeño con entregas hoy, eficiencia de ruta y últimas entregas." />
 			</Helmet>
 			<div className="driver-dashboard">
-			<div className="dd-header">
+			<div className="page-header">
 				<div>
-					<h1 className="dd-title">Resumen de Desempeño</h1>
-					<p className="dd-subtitle">Bienvenido de nuevo, Carlos. Aquí están tus estadísticas de hoy.</p>
+					<h1 className="dashboard-title">Resumen de Desempeño</h1>
+					<p className="dashboard-subtitle">Bienvenido de nuevo, Carlos. Aquí están tus estadísticas de hoy.</p>
 				</div>
-				<div className="dd-actions">
+				<div className="page-actions">
 					<button className="dd-btn-download" aria-label="Descargar reporte">
 						<svg fill="currentColor" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
 						DESCARGAR REPORTE
