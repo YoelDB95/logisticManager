@@ -18,9 +18,6 @@ export default function MLScannerCrop() {
   const [barcode, setBarcode] = useState(null);
   const [ocrText, setOcrText] = useState("");
 
-  const crop = cropConfig;
-
-  // --- 1. DEFINIR runOCR ANTES de cualquier useEffect ---
   const runOCR = useCallback(async () => {
     const video = videoRef.current;
     const canvas = canvasRef.current;
@@ -34,10 +31,11 @@ export default function MLScannerCrop() {
     const ctx = canvas.getContext("2d");
     ctx.drawImage(video, 0, 0);
 
-    const cropX = canvas.width * crop.x;
-    const cropY = canvas.height * crop.y;
-    const cropW = canvas.width * crop.w;
-    const cropH = canvas.height * crop.h;
+    const { x, y, w, h } = cropConfig;
+    const cropX = canvas.width * x;
+    const cropY = canvas.height * y;
+    const cropW = canvas.width * w;
+    const cropH = canvas.height * h;
 
     cropCanvas.width = cropW;
     cropCanvas.height = cropH;
@@ -49,17 +47,15 @@ export default function MLScannerCrop() {
 
     const { data: { text } } = await Tesseract.recognize(imgData, "spa");
     setOcrText(text);
+  }, []);
 
-  }, []); // AHORA NO FALTAN DEPENDENCIAS
-
-
-  // --- 2. Activar cámara + ZXing ---
   useEffect(() => {
     const reader = new BrowserMultiFormatReader();
+    const video = videoRef.current;
 
     reader.decodeFromVideoDevice(
       null,
-      videoRef.current,
+      video,
       (result) => {
         if (result) {
           setBarcode(result.getText());
@@ -67,11 +63,16 @@ export default function MLScannerCrop() {
       }
     );
 
-    return () => reader.reset;
+    return () => {
+      reader.reset();
+      if (video && video.srcObject) {
+        const stream = video.srcObject;
+        stream.getTracks().forEach(track => track.stop());
+        video.srcObject = null;
+      }
+    };
   }, []);
 
-
-  // --- 3. Llamar a runOCR cuando hay un barcode ---
   useEffect(() => {
     if (!barcode) return;
 
@@ -80,8 +81,7 @@ export default function MLScannerCrop() {
     }, 1500);
 
     return () => clearInterval(interval);
-  }, [barcode, runOCR]); // <--- ahora sí se puede incluir runOCR
-
+  }, [barcode, runOCR]);
 
   return (
     <div style={{ padding: 20 }}>
@@ -93,14 +93,13 @@ export default function MLScannerCrop() {
           autoPlay
         />
 
-        {/* Marco de recorte */}
         <div
           className="crop-overlay"
           style={{
-            left: `${crop.x * 100}%`,
-            top: `${crop.y * 100}%`,
-            width: `${crop.w * 100}%`,
-            height: `${crop.h * 100}%`,
+            left: `${cropConfig.x * 100}%`,
+            top: `${cropConfig.y * 100}%`,
+            width: `${cropConfig.w * 100}%`,
+            height: `${cropConfig.h * 100}%`,
           }}
         />
       </div>

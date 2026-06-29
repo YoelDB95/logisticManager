@@ -6,7 +6,6 @@ export const Delivery = ({ packages}) => {
     const [filters, setFilters] = useState({packageStatus: '', date: '', consignee: ''})
     const [page, setPage] = useState(0)
     const totalRows = 4
-    console.log('page: ', page + 1);
 
     const minIndex = page * totalRows
     const maxIndex = page * totalRows + totalRows
@@ -19,7 +18,7 @@ export const Delivery = ({ packages}) => {
         let inputDate
         let backendDate
         if (filters.date) {
-            backendDate = new Date(_package.dateCreatedAt) // ISO del backend
+            backendDate = new Date(_package.dateCreatedAt)
             const [y, m, d] = filters.date.split('-').map(Number)
             inputDate = new Date(y, m - 1, d)
         }
@@ -64,8 +63,10 @@ export const Delivery = ({ packages}) => {
             </header>
 
             <main className="main-dash">
-                <section className="filters">
+                <section className="filters" aria-label="Filtros de búsqueda">
+                    <label htmlFor="filter-status" className="visually-hidden">Estado del paquete</label>
                     <select
+                        id="filter-status"
                         name="estado"
                         onChange={e => {setFilters({...filters, packageStatus: e.target.value}); setPage(0)}}
                         className="filter-btn"
@@ -75,14 +76,18 @@ export const Delivery = ({ packages}) => {
                         <option value='En ruta'>En Ruta</option>
                         <option value='Entregado'>Entregado</option>
                     </select>
+                    <label htmlFor="filter-date" className="visually-hidden">Filtrar por fecha</label>
                     <input
+                        id="filter-date"
                         type="date"
                         onChange={e => {setFilters({...filters, date: e.target.value}); setPage(0)}}
                         name="fecha"
                         className="filter-btn"
-                    ></input>
+                    />
                     <div className="filter-search">
+                        <label htmlFor="filter-search-input" className="visually-hidden">Buscar por destinatario o ID</label>
 						<input
+                            id="filter-search-input"
                             type="text"
                             onChange={e => {setFilters({...filters, consignee: e.target.value}); setPage(0)}}
                             placeholder="Buscar por Destinatario o ID"
@@ -90,16 +95,16 @@ export const Delivery = ({ packages}) => {
 					</div>
                 </section>
 
-                <section className="table-container">
+                <section className="table-container" aria-label="Listado de paquetes">
                     <div className="table-scroll">
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Destinatario</th>
-                                    <th>Destino</th>
-                                    <th>Estado</th>
-                                    <th>Fecha de Carga</th>
-                                    <th></th>
+                                    <th scope="col">Destinatario</th>
+                                    <th scope="col">Destino</th>
+                                    <th scope="col">Estado</th>
+                                    <th scope="col">Fecha de Carga</th>
+                                    <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>

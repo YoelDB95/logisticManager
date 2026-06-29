@@ -58,6 +58,11 @@
 	border-color: #87929a;
 }
 
+.btn-outline:focus-visible {
+	outline: 2px solid #38bdf8;
+	outline-offset: 2px;
+}
+
 .btn-primary {
 	display: flex;
 	align-items: center;
@@ -76,6 +81,11 @@
 
 .btn-primary:hover {
 	filter: brightness(1.1);
+}
+
+.btn-primary:focus-visible {
+	outline: 2px solid #38bdf8;
+	outline-offset: 2px;
 }
 
 .btn-primary:active {

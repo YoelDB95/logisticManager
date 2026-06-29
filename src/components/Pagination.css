@@ -29,3 +29,8 @@
 	opacity: 0.5;
 	cursor: not-allowed;
 }
+
+.btn-pagination:focus-visible {
+	outline: 2px solid #38bdf8;
+	outline-offset: 2px;
+}

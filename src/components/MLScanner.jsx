@@ -8,19 +8,23 @@ export default function MLScanner() {
 
   useEffect(() => {
     const codeReader = new BrowserMultiFormatReader();
+    const video = videoRef.current;
 
     codeReader
-      .decodeFromVideoDevice(null, videoRef.current, (result, err) => {
+      .decodeFromVideoDevice(null, video, (result) => {
         if (result) {
           setCodigo(result.getText());
-          console.log(result);
-          
         }
       })
       .catch((err) => console.error(err));
 
     return () => {
       codeReader.reset();
+      if (video && video.srcObject) {
+        const stream = video.srcObject;
+        stream.getTracks().forEach(track => track.stop());
+        video.srcObject = null;
+      }
     };
   }, []);
 

@@ -7,8 +7,9 @@ export const Header = () => {
             <div>
                 <NavLink to="/" className='header-title' end>LogisticsManager</NavLink>
             </div>
-            <nav>
+            <nav aria-label="Navegación principal">
                 <NavLink to="/" end>Dashboard</NavLink>
+                <NavLink to="/admin">Admin</NavLink>
                 <NavLink to="/envios">Envios</NavLink>
                 <NavLink to="/cargar">Cargar Paquetes</NavLink>
             </nav>

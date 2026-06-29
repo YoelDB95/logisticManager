@@ -8,11 +8,23 @@ export default function OCRCamera() {
   const [texto, setTexto] = useState("");
   const [procesando, setProcesando] = useState(false);
 
-  // Inicializar cámara
   useEffect(() => {
-    navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
-      videoRef.current.srcObject = stream;
+    const video = videoRef.current;
+    let stream = null;
+    navigator.mediaDevices.getUserMedia({ video: true }).then(s => {
+      stream = s;
+      if (video) {
+        video.srcObject = stream;
+      }
     });
+    return () => {
+      if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+      }
+      if (video) {
+        video.srcObject = null;
+      }
+    };
   }, []);
 
   const capturarYLeer = async () => {
@@ -21,17 +33,14 @@ export default function OCRCamera() {
     setProcesando(true);
     setTexto("Procesando...");
 
-    // Dibujar frame del video en un canvas
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
     canvas.width = videoRef.current.videoWidth;
     canvas.height = videoRef.current.videoHeight;
     ctx.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
 
-    // Convertir canvas a imagen
     const dataURL = canvas.toDataURL("image/png");
 
-    // Procesar con Tesseract
     const result = await Tesseract.recognize(dataURL, "spa", {
       logger: (m) => console.log(m),
     });

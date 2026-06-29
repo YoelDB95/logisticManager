@@ -3,8 +3,8 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 import './Dashboard.css'
 
 const IconBox = ({ color, path }) => (
-	<span className="icon-box" style={{ background: `${color}1a`, color }}>
-		<svg fill="currentColor" viewBox="0 0 24 24" width="20" height="20">
+	<span className="icon-box" style={{ background: `${color}1a`, color }} aria-hidden="true">
+		<svg fill="currentColor" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
 			<path d={path} />
 		</svg>
 	</span>
@@ -59,18 +59,18 @@ export const Dashboard = ({ packages }) => {
 					<p className="dashboard-subtitle">Resumen operativo en tiempo real</p>
 				</div>
 				<div className="page-actions">
-					<button className="btn-outline">
-						<svg fill="currentColor" viewBox="0 0 24 24" width="16" height="16"><path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/></svg>
+					<button className="btn-outline" aria-label="Filtrar dashboard">
+						<svg fill="currentColor" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/></svg>
 						FILTRAR
 					</button>
-					<button className="btn-primary" onClick={() => navigate('/cargar')}>
-						<svg fill="currentColor" viewBox="0 0 24 24" width="16" height="16"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+					<button className="btn-primary" onClick={() => navigate('/cargar')} aria-label="Crear nuevo envío">
+						<svg fill="currentColor" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
 						NUEVO ENVÍO
 					</button>
 				</div>
 			</div>
 
-			<section className="kpi-grid">
+			<section className="kpi-grid" aria-label="Indicadores clave de rendimiento">
 				<article className="kpi-card">
 					<div className="kpi-header">
 						<span className="kpi-label">Total Paquetes</span>
@@ -114,7 +114,7 @@ export const Dashboard = ({ packages }) => {
 			</section>
 
 			{total > 0 && (
-				<section className="charts-grid">
+				<section className="charts-grid" aria-label="Gráficos de rendimiento">
 					<div className="chart-card chart-wide">
 						<div className="chart-header">
 							<h3 className="chart-title">Rendimiento Semanal</h3>
@@ -166,9 +166,9 @@ export const Dashboard = ({ packages }) => {
 				</section>
 			)}
 
-			<section className="activity-section">
+			<section className="activity-section" aria-label="Actividad reciente">
 				<h3 className="section-title">Actividad Reciente</h3>
-				<div className="activity-list">
+				<div className="activity-list" role="list">
 					{recent.map((pkg, i) => {
 						const status = pkg?.packages?.[0]?.status || 'Pendiente'
 						const cfg = statusConfig[status] || statusConfig.Pendiente
@@ -180,10 +180,10 @@ export const Dashboard = ({ packages }) => {
 							return hrs === 1 ? 'Hace 1 hora' : `Hace ${hrs} horas`
 						})() : ''
 						return (
-							<div key={i} className="activity-item">
+							<div key={i} className="activity-item" role="listitem">
 								<div className="activity-left">
-									<span className="activity-icon" style={{ background: `${cfg.color}1a`, color: cfg.color }}>
-										<svg fill="currentColor" viewBox="0 0 24 24" width="18" height="18">
+									<span className="activity-icon" style={{ background: `${cfg.color}1a`, color: cfg.color }} aria-hidden="true">
+										<svg fill="currentColor" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
 											<path d={status === 'Entregado' ? icons.check : status === 'Pendiente' ? icons.warning : icons.truck} />
 										</svg>
 									</span>

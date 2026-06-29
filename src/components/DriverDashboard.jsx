@@ -70,19 +70,19 @@ export const DriverDashboard = ({ packages }) => {
 					<p className="dd-subtitle">Bienvenido de nuevo, Carlos. Aquí están tus estadísticas de hoy.</p>
 				</div>
 				<div className="dd-actions">
-					<button className="dd-btn-download">
-						<svg fill="currentColor" viewBox="0 0 24 24" width="16" height="16"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+					<button className="dd-btn-download" aria-label="Descargar reporte">
+						<svg fill="currentColor" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
 						DESCARGAR REPORTE
 					</button>
 				</div>
 			</div>
 
-			<section className="dd-metrics">
+			<section className="dd-metrics" aria-label="Métricas de desempeño">
 				<article className="dd-card">
 					<div className="dd-card-top">
 						<span className="dd-card-label">Entregas Hoy</span>
-						<span className="dd-card-icon" style={{ color: '#38bdf8' }}>
-							<svg fill="currentColor" viewBox="0 0 24 24" width="20" height="20"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zm-.5 1.5l1.96 2.5H17V9.5h2.5zM6 18c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm12 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"/></svg>
+						<span className="dd-card-icon" style={{ color: '#38bdf8' }} aria-hidden="true">
+							<svg fill="currentColor" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zm-.5 1.5l1.96 2.5H17V9.5h2.5zM6 18c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm12 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"/></svg>
 						</span>
 					</div>
 					<div className="dd-card-value">
@@ -96,15 +96,15 @@ export const DriverDashboard = ({ packages }) => {
 				<article className="dd-card">
 					<div className="dd-card-top">
 						<span className="dd-card-label">Eficiencia Ruta</span>
-						<span className="dd-card-icon" style={{ color: '#ffc176' }}>
-							<svg fill="currentColor" viewBox="0 0 24 24" width="20" height="20"><path d="M15.5 15.38c-.69 0-1.31.28-1.77.74l-4.84-2.76c.05-.22.11-.44.11-.68 0-.24-.06-.46-.11-.68l4.7-2.7c.49.42 1.12.7 1.86.7 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.06.46.11.68l-4.7 2.7c-.49-.42-1.12-.7-1.86-.7-1.66 0-3 1.34-3 3s1.34 3 3 3c.74 0 1.37-.28 1.86-.7l4.84 2.76c-.05.22-.11.44-.11.68 0 1.66 1.34 3 3 3s3-1.34 3-3-1.35-3-3.01-3z"/></svg>
+						<span className="dd-card-icon" style={{ color: '#ffc176' }} aria-hidden="true">
+							<svg fill="currentColor" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15.5 15.38c-.69 0-1.31.28-1.77.74l-4.84-2.76c.05-.22.11-.44.11-.68 0-.24-.06-.46-.11-.68l4.7-2.7c.49.42 1.12.7 1.86.7 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.06.46.11.68l-4.7 2.7c-.49-.42-1.12-.7-1.86-.7-1.66 0-3 1.34-3 3s1.34 3 3 3c.74 0 1.37-.28 1.86-.7l4.84 2.76c-.05.22-.11.44-.11.68 0 1.66 1.34 3 3 3s3-1.34 3-3-1.35-3-3.01-3z"/></svg>
 						</span>
 					</div>
 					<div className="dd-card-value">
 						92<span className="dd-card-suffix">%</span>
 					</div>
 					<div className="dd-card-trend trend-up">
-						<svg fill="currentColor" viewBox="0 0 24 24" width="14" height="14"><path d="M7 14l5-5 5 5z"/></svg>
+						<svg fill="currentColor" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M7 14l5-5 5 5z"/></svg>
 						+3.2% vs ayer
 					</div>
 				</article>
@@ -112,8 +112,8 @@ export const DriverDashboard = ({ packages }) => {
 				<article className="dd-card">
 					<div className="dd-card-top">
 						<span className="dd-card-label">Promedio Entrega</span>
-						<span className="dd-card-icon" style={{ color: '#38bdf8' }}>
-							<svg fill="currentColor" viewBox="0 0 24 24" width="20" height="20"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+						<span className="dd-card-icon" style={{ color: '#38bdf8' }} aria-hidden="true">
+							<svg fill="currentColor" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
 						</span>
 					</div>
 					<div className="dd-card-value">
@@ -127,18 +127,18 @@ export const DriverDashboard = ({ packages }) => {
 				<article className="dd-card">
 					<div className="dd-card-top">
 						<span className="dd-card-label">Calificación</span>
-						<span className="dd-card-icon" style={{ color: '#38bdf8' }}>
-							<svg fill="currentColor" viewBox="0 0 24 24" width="20" height="20"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+						<span className="dd-card-icon" style={{ color: '#38bdf8' }} aria-hidden="true">
+							<svg fill="currentColor" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
 						</span>
 					</div>
 					<div className="dd-card-value">
 						4.8<span className="dd-card-suffix">/5</span>
 					</div>
-					<div className="dd-stars">
+					<div className="dd-stars" aria-label="4.8 de 5 estrellas">
 						{Array.from({ length: 4 }, (_, i) => (
-							<svg key={i} fill="#f1a02b" viewBox="0 0 24 24" width="14" height="14"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+							<svg key={i} fill="#f1a02b" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
 						))}
-						<svg fill="#f1a02b" viewBox="0 0 24 24" width="14" height="14" style={{ opacity: 0.5 }}>
+						<svg fill="#f1a02b" viewBox="0 0 24 24" width="14" height="14" style={{ opacity: 0.5 }} aria-hidden="true">
 							<path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
 						</svg>
 					</div>
@@ -146,7 +146,7 @@ export const DriverDashboard = ({ packages }) => {
 			</section>
 
 			<div className="dd-main-grid">
-				<section className="dd-chart-card">
+				<section className="dd-chart-card" aria-label="Gráfico de desempeño semanal">
 					<div className="dd-chart-header">
 						<div>
 							<h2 className="dd-chart-title">Desempeño Semanal</h2>
@@ -169,14 +169,14 @@ export const DriverDashboard = ({ packages }) => {
 					</ResponsiveContainer>
 				</section>
 
-				<aside className="dd-route-card">
+				<aside className="dd-route-card" aria-label="Resumen de ruta actual">
 					<div className="dd-route-header">
 						<div>
 							<h2 className="dd-chart-title">Ruta Actual</h2>
 							<span className="dd-route-sector">SECTOR: NORTE-CENTRO</span>
 						</div>
-						<button className="dd-route-more">
-							<svg fill="currentColor" viewBox="0 0 24 24" width="20" height="20"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+						<button className="dd-route-more" aria-label="Más opciones de ruta">
+							<svg fill="currentColor" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
 						</button>
 					</div>
 					<div className="dd-route-timeline">
@@ -193,8 +193,8 @@ export const DriverDashboard = ({ packages }) => {
 									<div className="dd-stop-detail">{stop.detail}</div>
 									{stop.active && (
 										<div className="dd-stop-actions">
-											<button className="dd-btn-nav">
-												<svg fill="currentColor" viewBox="0 0 24 24" width="14" height="14"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>
+											<button className="dd-btn-nav" aria-label="Navegar a esta dirección">
+												<svg fill="currentColor" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>
 												NAVEGAR
 											</button>
 											<button className="dd-btn-detail">DETALLES</button>
@@ -207,7 +207,7 @@ export const DriverDashboard = ({ packages }) => {
 				</aside>
 			</div>
 
-			<section className="dd-table-section">
+			<section className="dd-table-section" aria-label="Últimas entregas">
 				<div className="dd-table-header">
 					<h2 className="dd-chart-title">Últimas Entregas</h2>
 					<button className="dd-link-all">VER TODAS</button>
@@ -216,11 +216,11 @@ export const DriverDashboard = ({ packages }) => {
 					<table className="dd-table">
 						<thead>
 							<tr>
-								<th>ID ENVÍO</th>
-								<th>DESTINO</th>
-								<th>FINALIZADO</th>
-								<th>ESTADO</th>
-								<th className="th-right">ACCIONES</th>
+								<th scope="col">ID ENVÍO</th>
+								<th scope="col">DESTINO</th>
+								<th scope="col">FINALIZADO</th>
+								<th scope="col">ESTADO</th>
+								<th scope="col" className="th-right">ACCIONES</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -233,8 +233,8 @@ export const DriverDashboard = ({ packages }) => {
 										<td className="cell-time">{row.time}</td>
 										<td><span className="dd-status-chip" style={{ background: chip.bg, color: chip.color }}>{chip.label}</span></td>
 										<td className="td-right">
-											<button className="dd-btn-eye">
-												<svg fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+											<button className="dd-btn-eye" aria-label={`Ver detalle de envío ${row.id}`}>
+												<svg fill="currentColor" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
 											</button>
 										</td>
 									</tr>

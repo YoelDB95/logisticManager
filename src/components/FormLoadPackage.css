@@ -31,6 +31,13 @@ form {
 	margin-bottom: 0.5rem;
 }
 
+.field-error {
+	color: #ffb4ab;
+	font-size: 0.75rem;
+	margin-top: 4px;
+	display: block;
+}
+
 .section-title {
 	font-size: 1.4rem;
 	font-weight: bold;
@@ -64,6 +71,11 @@ form {
 	transform: translateY(-1px);
 }
 
+.scan-btn:focus-visible {
+	outline: 2px solid #38bdf8;
+	outline-offset: 2px;
+}
+
 .form-actions {
 	display: flex;
 	justify-content: flex-end;
@@ -86,6 +98,11 @@ form {
 	background: rgba(255, 255, 255, 0.05);
 }
 
+.btn-cancel:focus-visible {
+	outline: 2px solid #38bdf8;
+	outline-offset: 2px;
+}
+
 .btn-submit {
 	background: #334054;
 	color: white;
@@ -103,6 +120,11 @@ form {
 .btn-submit:hover:not(:disabled) {
 	background: #3d4d66;
 	transform: translateY(-1px);
+}
+
+.btn-submit:focus-visible {
+	outline: 2px solid #38bdf8;
+	outline-offset: 2px;
 }
 
 .scan-hint {
@@ -152,8 +174,18 @@ form {
 	cursor: pointer;
 	line-height: 1;
 	padding: 0.25rem;
+	min-width: 32px;
+	min-height: 32px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .modal-close:hover {
 	color: var(--text-light);
+}
+
+.modal-close:focus-visible {
+	outline: 2px solid #38bdf8;
+	outline-offset: 2px;
 }
