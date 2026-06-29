@@ -64,10 +64,10 @@ export default function MLScannerCrop() {
     );
 
     return () => {
-      reader.reset();
+      try { reader.reset(); } catch (_) {}
       if (video && video.srcObject) {
         const stream = video.srcObject;
-        stream.getTracks().forEach(track => track.stop());
+        try { stream.getTracks().forEach(track => track.stop()); } catch (_) {}
         video.srcObject = null;
       }
     };
