@@ -1,8 +1,29 @@
 import { Helmet } from 'react-helmet-async'
 import axios from "axios"
-import { useState } from "react"
+import { useState, Component } from "react"
 import MLScannerCrop from "./MLScannerCrop.jsx"
 import './FormLoadPackage.css'
+
+class ScannerErrorBoundary extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { hasError: false }
+  }
+  static getDerivedStateFromError() {
+    return { hasError: true }
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="scanner-error">
+          <p>No se pudo cargar el escáner.</p>
+          <p className="scanner-error-hint">Verifica que tu cámara esté disponible y los permisos concedidos.</p>
+        </div>
+      )
+    }
+    return this.props.children
+  }
+}
 
 export const FormLoadPackage = ({ setPackages }) => {
   const [data, setData] = useState({name: '', address: '', barcode: '', content: '', weight: '', dimension: '', city: ''})
@@ -35,8 +56,7 @@ export const FormLoadPackage = ({ setPackages }) => {
       setErrors({})
   }
 
-  const handleScanner = (e) => {
-    e.preventDefault()
+  const handleScanner = () => {
     setShowScanner(true)
   }
 
@@ -139,7 +159,13 @@ export const FormLoadPackage = ({ setPackages }) => {
             </div>
           </section>
 
-          <section className="scan-section" aria-label="Escaneo de etiqueta">
+          <div className='form-actions'>
+            <button type='button' className='btn-outline'>Cancelar</button>
+            <button type='submit' disabled={!enable} className='btn-primary' aria-disabled={!enable}>Guardar Paquete</button>
+          </div>
+        </form>
+
+        <section className="scan-section" aria-label="Escaneo de etiqueta">
             <p className="scan-hint">
               Escanee la etiqueta para rellenar automáticamente los detalles del paquete.
             </p>
@@ -148,17 +174,11 @@ export const FormLoadPackage = ({ setPackages }) => {
             </button>
           </section>
 
-          <div className='form-actions'>
-            <button type='button' className='btn-outline'>Cancelar</button>
-            <button type='submit' disabled={!enable} className='btn-primary' aria-disabled={!enable}>Guardar Paquete</button>
-          </div>
-        </form>
-
         {showScanner && (
           <div className="modal-overlay" onClick={handleCloseScanner} role="dialog" aria-modal="true" aria-label="Escáner de código de barras">
             <div className="modal-content" onClick={e => e.stopPropagation()}>
               <button className="modal-close" onClick={handleCloseScanner} aria-label="Cerrar escáner">&times;</button>
-              <MLScannerCrop />
+              <ScannerErrorBoundary><MLScannerCrop /></ScannerErrorBoundary>
             </div>
           </div>
         )}
