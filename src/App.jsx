@@ -23,10 +23,10 @@ function App() {
     <>
       <Header />
       <Routes>
-        <Route path="/" element={<Dashboard packages={packages} />} />
+        <Route path="/" element={<DriverDashboard packages={packages} />} />
+        <Route path="/admin" element={<Dashboard packages={packages} />} />
         <Route path="/envios" element={<Delivery packages={packages} />} />
         <Route path="/cargar" element={<FormLoadPackage packages={packages} setPackages={setPackages} />} />
-        <Route path="/conductor" element={<DriverDashboard packages={packages} />} />
       </Routes>
     </>
   )
