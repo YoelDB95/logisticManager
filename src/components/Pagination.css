@@ -54,3 +54,22 @@
   outline: 2px solid #38bdf8;
   outline-offset: 2px;
 }
+
+@media (max-width: 640px) {
+  .pagination {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .btn-pag {
+    justify-content: center;
+  }
+
+  .btn-pagination {
+    min-height: 44px;
+    justify-content: center;
+    flex: 1;
+  }
+}

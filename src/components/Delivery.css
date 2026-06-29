@@ -223,4 +223,35 @@ td:nth-child(5) { width: 15%; }
   .filters {
     flex-wrap: wrap;
   }
+
+  .filter-btn,
+  .filter-search input {
+    min-height: 44px;
+  }
+
+  .btn-outline {
+    min-height: 44px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .filters {
+    flex-direction: column;
+  }
+
+  .filter-search {
+    width: 100%;
+  }
+
+  th, td {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+
+  th:nth-child(2),
+  td:nth-child(2) { width: 30%; }
+
+  th:nth-child(4),
+  td:nth-child(4) { width: 16%; }
 }

@@ -439,8 +439,12 @@
 		grid-template-columns: 1fr;
 	}
 
-	.btn-outline span,
-	.btn-primary span {
-		display: none;
+	.btn-outline,
+	.btn-primary {
+		min-height: 44px;
+	}
+
+	.page-actions {
+		flex-wrap: wrap;
 	}
 }
