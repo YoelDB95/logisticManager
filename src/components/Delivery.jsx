@@ -4,6 +4,11 @@ import { Pagination } from "./Pagination"
 import './Delivery.css'
 
 export const Delivery = ({ packages}) => {
+    const statusCfg = {
+        'En ruta':    { color: '#38bdf8', label: 'EN RUTA' },
+        'Entregado':  { color: '#10b981', label: 'ENTREGADO' },
+        'not delivered': { color: '#f1a02b', label: 'PENDIENTE' },
+    }
     const [filters, setFilters] = useState({packageStatus: '', date: '', consignee: ''})
     const [page, setPage] = useState(0)
     const totalRows = 4
@@ -39,14 +44,15 @@ export const Delivery = ({ packages}) => {
 
     const data = (_packages) => {
         return _packages.slice(minIndex, maxIndex).map((_package, i) => {
-            const packageClass = _package?.packages[0]?.status === 'En ruta' ? "badge-green" : ""
+            const status = _package?.packages[0]?.status || 'not delivered'
+            const cfg = statusCfg[status] || { color: '#87929a', label: status }
             return (
                 <tr key={i}>
                     <td className="bold">{_package?.name || ''}</td>
                     <td className="td-muted">{_package.address + ', ' + _package?.city || ''}</td>
-                    <td><span className={"badge " + packageClass}>{_package?.packages[0]?.status || ''}</span></td>
+                    <td><span className="status-chip" style={{ background: `${cfg.color}1a`, color: cfg.color }}>{cfg.label}</span></td>
                     <td className="td-muted">{new Date(_package?.dateCreatedAt).toLocaleDateString('es-AR') || ''}</td>
-                    <td className="td-actions"><button className="btn-link">Ver detalle</button></td> 
+                    <td className="td-actions"><button className="btn-outline">Ver detalle</button></td> 
                 </tr>
             )
         })
@@ -62,17 +68,15 @@ export const Delivery = ({ packages}) => {
                 <meta name="twitter:title" content="Envíos — Logistic Manager" />
                 <meta name="twitter:description" content="Gestión de paquetes activos con filtros por estado, fecha y destinatario." />
             </Helmet>
-            <div className="dashboard-container">
-            <header className="main-header">
-                <div className="main-title-group">
-                    <p className="main-title">Panel de Gestión de Paquetes</p>
-                    <p className="main-subtitle">
+            <div className="delivery-page">
+            <div className="page-header">
+                <div>
+                    <h1 className="dashboard-title">Panel de Gestión de Paquetes</h1>
+                    <p className="dashboard-subtitle">
                         Gestiona todos los paquetes activos en un solo lugar.
                     </p>
                 </div>
-            </header>
-
-            <main className="main-dash">
+            </div>
                 <section className="filters" aria-label="Filtros de búsqueda">
                     <label htmlFor="filter-status" className="visually-hidden">Estado del paquete</label>
                     <select
@@ -125,7 +129,6 @@ export const Delivery = ({ packages}) => {
                 </section>
                 
                 <Pagination handlePage={handlePage} page={page} totalRows={totalRows} packages={filteredPackages}/>
-            </main>
         </div>
         </>
     )
