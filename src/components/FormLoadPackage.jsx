@@ -87,20 +87,30 @@ const handleScanResult = ({ barcode, ocrText }) => {
 
     lines.forEach(line => {
       const stripped = line.replace(/^(?:domicilio|direccion|dirección|address|ciudad|destino|city|peso|weight|dimension|dimensiones|referencia|reference|contenido|content)\s*[:\s]+/i, '').trim()
-      if (stripped === line) return
       const lower = line.toLowerCase()
-      if (lower.startsWith('domicilio') || lower.startsWith('direccion') || lower.startsWith('dirección') || lower.startsWith('address')) {
-        result.address = stripped
-      } else if (lower.startsWith('ciudad') || lower.startsWith('destino') || lower.startsWith('city')) {
-        result.city = stripped
-      } else if (lower.startsWith('peso') || lower.startsWith('weight')) {
-        result.weight = stripped
-      } else if (lower.startsWith('dimension') || lower.startsWith('dimensiones')) {
-        result.dimension = stripped
-      } else if (lower.startsWith('referencia') || lower.startsWith('reference')) {
-        result.content = stripped
-      } else if (lower.startsWith('contenido') || lower.startsWith('content')) {
-        result.content = stripped
+      if (stripped !== line) {
+        if (lower.startsWith('domicilio') || lower.startsWith('direccion') || lower.startsWith('dirección') || lower.startsWith('address')) {
+          result.address = stripped
+          return
+        } else if (lower.startsWith('ciudad') || lower.startsWith('destino') || lower.startsWith('city')) {
+          result.city = stripped
+          return
+        } else if (lower.startsWith('peso') || lower.startsWith('weight')) {
+          result.weight = stripped
+          return
+        } else if (lower.startsWith('dimension') || lower.startsWith('dimensiones')) {
+          result.dimension = stripped
+          return
+        } else if (lower.startsWith('referencia') || lower.startsWith('reference')) {
+          result.content = stripped
+          return
+        } else if (lower.startsWith('contenido') || lower.startsWith('content')) {
+          result.content = stripped
+          return
+        }
+      }
+      if (!result.content && !result.name) {
+        result.content = line
       }
     })
     return result

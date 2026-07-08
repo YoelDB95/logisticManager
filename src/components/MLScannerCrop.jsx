@@ -58,17 +58,16 @@ export default function MLScannerCrop({ onScan }) {
     cropCanvas.height = cropH;
 
     const cropCtx = cropCanvas.getContext("2d");
-    cropCtx.filter = 'contrast(1.3) brightness(1.1)';
     cropCtx.drawImage(canvas, cropX, cropY, cropW, cropH, 0, 0, cropW, cropH);
 
-    const imgData = cropCanvas.toDataURL("image/jpeg", 0.9);
+    const imgData = cropCanvas.toDataURL("image/png");
 
     try {
       const { data: { text } } = await Tesseract.recognize(imgData, "spa", {
         logger: () => {},
       });
-      if (text && text.trim() && text.trim() !== ocrText) {
-        setOcrText(text);
+      setOcrText(text || '');
+      if (text && text.trim()) {
         onScanRef.current({ barcode: barcodeRef.current, ocrText: text });
       }
     } catch (_) {}
