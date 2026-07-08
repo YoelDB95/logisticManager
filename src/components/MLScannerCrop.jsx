@@ -23,7 +23,7 @@ export default function MLScannerCrop({ onScan }) {
 
   const runOCR = useCallback(async () => {
     const now = Date.now();
-    if (now - lastOcrRef.current < 1000) return;
+    if (now - lastOcrRef.current < 2000) return;
     lastOcrRef.current = now;
 
     setIsScanning(true);
@@ -97,7 +97,7 @@ export default function MLScannerCrop({ onScan }) {
 
     ocrTimerRef.current = setInterval(() => {
       runOCR();
-    }, 1000);
+    }, 2000);
 
     return () => {
       if (ocrTimerRef.current) clearInterval(ocrTimerRef.current);
