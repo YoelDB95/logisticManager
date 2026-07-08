@@ -64,13 +64,13 @@ export const FormLoadPackage = ({ setPackages }) => {
     setShowScanner(false)
   }
 
-  const handleScanResult = ({ barcode, ocrText }) => {
-    const parsed = parseOcrData(ocrText)
-    setData(prev => ({
-      ...prev,
-      barcode: barcode || prev.barcode,
-      ...parsed,
-    }))
+const handleScanResult = ({ barcode, ocrText }) => {
+    setData(prev => {
+      const parsed = parseOcrData(ocrText)
+      const merged = { ...prev, ...parsed }
+      if (barcode) merged.barcode = barcode
+      return merged
+    })
   }
 
   const parseOcrData = (text) => {
