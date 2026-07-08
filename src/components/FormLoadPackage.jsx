@@ -69,6 +69,7 @@ export const FormLoadPackage = ({ setPackages }) => {
     setData(prev => ({
       ...prev,
       barcode: barcode || prev.barcode,
+      content: barcode || prev.content,
       ...parsed,
     }))
   }
@@ -95,6 +96,8 @@ export const FormLoadPackage = ({ setPackages }) => {
         result.weight = line.replace(/^(peso|weight)[:\s]*/i, '').trim()
       } else if (lower.includes('dimension') || lower.includes('dimensiones')) {
         result.dimension = line.replace(/^(dimension|dimensiones)[:\s]*/i, '').trim()
+      } else if (lower.includes('referencia') || lower.includes('reference')) {
+        result.content = line.replace(/^(referencia|reference)[:\s]*/i, '').trim()
       } else if (lower.includes('contenido') || lower.includes('content')) {
         result.content = line.replace(/^(contenido|content)[:\s]*/i, '').trim()
       }
