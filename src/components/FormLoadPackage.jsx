@@ -86,28 +86,26 @@ const handleScanResult = ({ barcode, ocrText }) => {
     }
 
     lines.forEach(line => {
-      const stripped = line.replace(/^(?:domicilio|direccion|dirección|address|ciudad|destino|city|peso|weight|dimension|dimensiones|referencia|reference|contenido|content)\s*[:\s]+/i, '').trim()
       const lower = line.toLowerCase()
-      if (stripped !== line) {
-        if (lower.startsWith('domicilio') || lower.startsWith('direccion') || lower.startsWith('dirección') || lower.startsWith('address')) {
-          result.address = stripped
-          return
-        } else if (lower.startsWith('ciudad') || lower.startsWith('destino') || lower.startsWith('city')) {
-          result.city = stripped
-          return
-        } else if (lower.startsWith('peso') || lower.startsWith('weight')) {
-          result.weight = stripped
-          return
-        } else if (lower.startsWith('dimension') || lower.startsWith('dimensiones')) {
-          result.dimension = stripped
-          return
-        } else if (lower.startsWith('referencia') || lower.startsWith('reference')) {
-          result.content = stripped
-          return
-        } else if (lower.startsWith('contenido') || lower.startsWith('content')) {
-          result.content = stripped
-          return
+      const labelRegex = /^(domicilio|direccion|dirección|address|ciudad|destino|city|peso|weight|dimension|dimensiones|referencia|reference|contenido|content)\s*[:\s]*\s/i
+      const match = lower.match(labelRegex)
+      if (match) {
+        const key = match[1]
+        const value = line.slice(match[0].length).trim()
+        if (/^domicilio|^direccion|^dirección|^address/.test(key)) {
+          result.address = value
+        } else if (/^ciudad|^destino|^city/.test(key)) {
+          result.city = value
+        } else if (/^peso|^weight/.test(key)) {
+          result.weight = value
+        } else if (/^dimension/.test(key)) {
+          result.dimension = value
+        } else if (/^referencia|^reference/.test(key)) {
+          result.content = value
+        } else if (/^contenido|^content/.test(key)) {
+          result.content = value
         }
+        return
       }
       if (!result.content && !result.name) {
         result.content = line
