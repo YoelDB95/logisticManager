@@ -64,6 +64,38 @@ export const FormLoadPackage = ({ setPackages }) => {
     setShowScanner(false)
   }
 
+  const handleScanResult = ({ barcode, ocrText }) => {
+    const parsed = parseOcrData(ocrText)
+    setData(prev => ({
+      ...prev,
+      barcode: barcode || prev.barcode,
+      ...parsed,
+    }))
+  }
+
+  const parseOcrData = (text) => {
+    if (!text) return {}
+    const lines = text.split('\n').map(l => l.trim()).filter(Boolean)
+    const result = {}
+    lines.forEach(line => {
+      const lower = line.toLowerCase()
+      if (lower.includes('nombre') || lower.includes('destinatario')) {
+        result.name = line.replace(/^(nombre|destinatario)[:\s]*/i, '').trim()
+      } else if (lower.includes('direccion') || lower.includes('dirección') || lower.includes('address')) {
+        result.address = line.replace(/^(direccion|dirección|address)[:\s]*/i, '').trim()
+      } else if (lower.includes('ciudad') || lower.includes('city')) {
+        result.city = line.replace(/^(ciudad|city)[:\s]*/i, '').trim()
+      } else if (lower.includes('peso') || lower.includes('weight')) {
+        result.weight = line.replace(/^(peso|weight)[:\s]*/i, '').trim()
+      } else if (lower.includes('dimension') || lower.includes('dimensiones')) {
+        result.dimension = line.replace(/^(dimension|dimensiones)[:\s]*/i, '').trim()
+      } else if (lower.includes('contenido') || lower.includes('content')) {
+        result.content = line.replace(/^(contenido|content)[:\s]*/i, '').trim()
+      }
+    })
+    return result
+  }
+
   const setField = (field, value) => {
     setData({...data, [field]: value})
     if (errors[field]) {
@@ -178,7 +210,7 @@ export const FormLoadPackage = ({ setPackages }) => {
           <div className="modal-overlay" onClick={handleCloseScanner} role="dialog" aria-modal="true" aria-label="Escáner de código de barras">
             <div className="modal-content" onClick={e => e.stopPropagation()}>
               <button className="modal-close" onClick={handleCloseScanner} aria-label="Cerrar escáner">&times;</button>
-              <ScannerErrorBoundary><MLScannerCrop /></ScannerErrorBoundary>
+              <ScannerErrorBoundary><MLScannerCrop onScan={handleScanResult} /></ScannerErrorBoundary>
             </div>
           </div>
         )}

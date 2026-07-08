@@ -10,20 +10,32 @@ const cropConfig = {
   h: 0.60
 };
 
-export default function MLScannerCrop() {
+export default function MLScannerCrop({ onScan }) {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const cropCanvasRef = useRef(null);
+  const ocrTimerRef = useRef(null);
+  const lastOcrRef = useRef(0);
 
   const [barcode, setBarcode] = useState(null);
   const [ocrText, setOcrText] = useState("");
+  const [isScanning, setIsScanning] = useState(false);
 
   const runOCR = useCallback(async () => {
+    const now = Date.now();
+    if (now - lastOcrRef.current < 1000) return;
+    lastOcrRef.current = now;
+
+    setIsScanning(true);
+
     const video = videoRef.current;
     const canvas = canvasRef.current;
     const cropCanvas = cropCanvasRef.current;
 
-    if (!video || video.readyState !== 4) return;
+    if (!video || video.readyState !== 4) {
+      setIsScanning(false);
+      return;
+    }
 
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
@@ -45,8 +57,12 @@ export default function MLScannerCrop() {
 
     const imgData = cropCanvas.toDataURL("image/png");
 
-    const { data: { text } } = await Tesseract.recognize(imgData, "spa");
-    setOcrText(text);
+    try {
+      const { data: { text } } = await Tesseract.recognize(imgData, "spa");
+      setOcrText(text);
+    } catch (_) {}
+
+    setIsScanning(false);
   }, []);
 
   useEffect(() => {
@@ -70,18 +86,29 @@ export default function MLScannerCrop() {
         try { stream.getTracks().forEach(track => track.stop()); } catch (_) {}
         video.srcObject = null;
       }
+      if (ocrTimerRef.current) clearInterval(ocrTimerRef.current);
     };
   }, []);
 
   useEffect(() => {
     if (!barcode) return;
 
-    const interval = setInterval(() => {
-      runOCR();
-    }, 1500);
+    if (ocrTimerRef.current) clearInterval(ocrTimerRef.current);
 
-    return () => clearInterval(interval);
+    ocrTimerRef.current = setInterval(() => {
+      runOCR();
+    }, 1000);
+
+    return () => {
+      if (ocrTimerRef.current) clearInterval(ocrTimerRef.current);
+    };
   }, [barcode, runOCR]);
+
+  useEffect(() => {
+    if (barcode && ocrText && ocrText !== 'Procesando...') {
+      onScan({ barcode, ocrText });
+    }
+  }, [barcode, ocrText, onScan]);
 
   return (
     <div className="scanner-wrap">
@@ -95,7 +122,7 @@ export default function MLScannerCrop() {
         />
 
         <div
-          className="crop-overlay"
+          className={`crop-overlay ${isScanning ? 'scanning' : 'idle'}`}
           style={{
             left: `${cropConfig.x * 100}%`,
             top: `${cropConfig.y * 100}%`,
@@ -116,7 +143,7 @@ export default function MLScannerCrop() {
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
               </svg>
             </div>
-            <p className="scanner-status-text">Enfoca el código de barras en el recuadro verde</p>
+            <p className="scanner-status-text">Enfoca el código de barras en el recuadro</p>
           </div>
         ) : (
           <>
