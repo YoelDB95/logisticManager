@@ -8,6 +8,7 @@ import { FormLoadPackage } from './components/FormLoadPackage.jsx'
 import { Dashboard } from './components/Dashboard.jsx'
 import { Delivery } from './components/Delivery.jsx'
 import { DriverDashboard } from './components/DriverDashboard.jsx'
+import { NotFound } from './components/NotFound.jsx'
 import { SkipLink } from './components/SkipLink.jsx'
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
           <Route path="/admin" element={<Dashboard packages={packages} />} />
           <Route path="/envios" element={<Delivery packages={packages} />} />
           <Route path="/cargar" element={<FormLoadPackage setPackages={setPackages} />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </>

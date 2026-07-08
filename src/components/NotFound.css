@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap');
+
+.not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 64px 24px;
+  min-height: 60vh;
+}
+
+.not-found-code {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 96px;
+  font-weight: 700;
+  color: #38bdf8;
+  line-height: 1;
+  opacity: 0.5;
+  margin-bottom: 16px;
+}
+
+.not-found-title {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: #dae2fd;
+  margin: 0 0 8px;
+}
+
+.not-found-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #bdc8d1;
+  margin: 0 0 32px;
+  max-width: 400px;
+}
+
+.not-found-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.not-found-actions .btn-primary,
+.not-found-actions .btn-outline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  transition: filter 0.2s;
+  min-height: 44px;
+}
+
+.not-found-actions .btn-primary {
+  background: #38bdf8;
+  color: #00354a;
+  border: none;
+}
+
+.not-found-actions .btn-primary:hover {
+  filter: brightness(1.1);
+}
+
+.not-found-actions .btn-primary:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 2px;
+}
+
+.not-found-actions .btn-primary:active {
+  transform: scale(0.97);
+}
+
+.not-found-actions .btn-outline {
+  background: #222a3d;
+  color: #dae2fd;
+  border: 1px solid #3e484f;
+}
+
+.not-found-actions .btn-outline:hover {
+  border-color: #87929a;
+}
+
+.not-found-actions .btn-outline:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 2px;
+}
+
+@media (max-width: 640px) {
+  .not-found {
+    padding: 48px 16px;
+  }
+
+  .not-found-code {
+    font-size: 72px;
+  }
+
+  .not-found-title {
+    font-size: 22px;
+  }
+
+  .not-found-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .not-found-actions .btn-primary,
+  .not-found-actions .btn-outline {
+    justify-content: center;
+    width: 100%;
+  }
+}
