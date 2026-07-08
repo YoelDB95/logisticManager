@@ -86,19 +86,21 @@ export const FormLoadPackage = ({ setPackages }) => {
     }
 
     lines.forEach(line => {
+      const stripped = line.replace(/^(?:domicilio|direccion|dirección|address|ciudad|destino|city|peso|weight|dimension|dimensiones|referencia|reference|contenido|content)\s*[:\s]+/i, '').trim()
+      if (stripped === line) return
       const lower = line.toLowerCase()
-      if (lower.includes('domicilio') || lower.includes('direccion') || lower.includes('dirección') || lower.includes('address')) {
-        result.address = line.replace(/^(domicilio|direccion|dirección|address)[:\s]*/i, '').trim()
-      } else if (lower.includes('ciudad') || lower.includes('destino') || lower.includes('city')) {
-        result.city = line.replace(/^(ciudad|city)[:\s]*/i, '').trim()
-      } else if (lower.includes('peso') || lower.includes('weight')) {
-        result.weight = line.replace(/^(peso|weight)[:\s]*/i, '').trim()
-      } else if (lower.includes('dimension') || lower.includes('dimensiones')) {
-        result.dimension = line.replace(/^(dimension|dimensiones)[:\s]*/i, '').trim()
-      } else if (lower.includes('referencia') || lower.includes('reference')) {
-        result.content = line.replace(/^(referencia|reference)[:\s]*/i, '').trim()
-      } else if (lower.includes('contenido') || lower.includes('content')) {
-        result.content = line.replace(/^(contenido|content)[:\s]*/i, '').trim()
+      if (lower.startsWith('domicilio') || lower.startsWith('direccion') || lower.startsWith('dirección') || lower.startsWith('address')) {
+        result.address = stripped
+      } else if (lower.startsWith('ciudad') || lower.startsWith('destino') || lower.startsWith('city')) {
+        result.city = stripped
+      } else if (lower.startsWith('peso') || lower.startsWith('weight')) {
+        result.weight = stripped
+      } else if (lower.startsWith('dimension') || lower.startsWith('dimensiones')) {
+        result.dimension = stripped
+      } else if (lower.startsWith('referencia') || lower.startsWith('reference')) {
+        result.content = stripped
+      } else if (lower.startsWith('contenido') || lower.startsWith('content')) {
+        result.content = stripped
       }
     })
     return result
