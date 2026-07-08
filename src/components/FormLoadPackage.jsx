@@ -89,7 +89,7 @@ export const FormLoadPackage = ({ setPackages }) => {
       const lower = line.toLowerCase()
       if (lower.includes('domicilio') || lower.includes('direccion') || lower.includes('dirección') || lower.includes('address')) {
         result.address = line.replace(/^(domicilio|direccion|dirección|address)[:\s]*/i, '').trim()
-      } else if (lower.includes('ciudad') || lower.includes('city')) {
+      } else if (lower.includes('ciudad') || lower.includes('destino') || lower.includes('city')) {
         result.city = line.replace(/^(ciudad|city)[:\s]*/i, '').trim()
       } else if (lower.includes('peso') || lower.includes('weight')) {
         result.weight = line.replace(/^(peso|weight)[:\s]*/i, '').trim()
