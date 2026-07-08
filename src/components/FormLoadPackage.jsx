@@ -77,12 +77,18 @@ export const FormLoadPackage = ({ setPackages }) => {
     if (!text) return {}
     const lines = text.split('\n').map(l => l.trim()).filter(Boolean)
     const result = {}
+
+    const allText = lines.join(' ')
+
+    const nameMatch = allText.match(/([A-ZÁÉÍÓÚÑ][a-záéíóúñ]+(?:\s+[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+)+)\s*\(/);
+    if (nameMatch) {
+      result.name = nameMatch[1].trim()
+    }
+
     lines.forEach(line => {
       const lower = line.toLowerCase()
-      if (lower.includes('nombre') || lower.includes('destinatario')) {
-        result.name = line.replace(/^(nombre|destinatario)[:\s]*/i, '').trim()
-      } else if (lower.includes('domicilio') || lower.includes('direccion') || lower.includes('dirección') || lower.includes('address')) {
-        result.address = line.replace(/^(direccion|dirección|address)[:\s]*/i, '').trim()
+      if (lower.includes('domicilio') || lower.includes('direccion') || lower.includes('dirección') || lower.includes('address')) {
+        result.address = line.replace(/^(domicilio|direccion|dirección|address)[:\s]*/i, '').trim()
       } else if (lower.includes('ciudad') || lower.includes('city')) {
         result.city = line.replace(/^(ciudad|city)[:\s]*/i, '').trim()
       } else if (lower.includes('peso') || lower.includes('weight')) {
