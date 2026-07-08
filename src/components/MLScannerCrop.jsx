@@ -20,6 +20,8 @@ export default function MLScannerCrop({ onScan }) {
   const lastOcrRef = useRef(0);
 
   const barcodeRef = useRef(null);
+  const onScanRef = useRef(onScan);
+  onScanRef.current = onScan;
   const [barcode, setBarcode] = useState(null);
   const [ocrText, setOcrText] = useState("");
   const [isScanning, setIsScanning] = useState(false);
@@ -67,12 +69,12 @@ export default function MLScannerCrop({ onScan }) {
       });
       if (text && text.trim() && text.trim() !== ocrText) {
         setOcrText(text);
-        onScan({ barcode: barcodeRef.current, ocrText: text });
+        onScanRef.current({ barcode: barcodeRef.current, ocrText: text });
       }
     } catch (_) {}
 
     setIsScanning(false);
-  }, [onScan]);
+  }, []);
 
   useEffect(() => {
     const reader = new BrowserMultiFormatReader();
