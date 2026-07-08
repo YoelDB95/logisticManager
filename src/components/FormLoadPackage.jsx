@@ -107,8 +107,8 @@ const handleScanResult = ({ barcode, ocrText }) => {
         }
         return
       }
-      if (!result.content && !result.name) {
-        result.content = line
+      if (result.content) {
+        result.content += ' ' + line
       }
     })
     return result
