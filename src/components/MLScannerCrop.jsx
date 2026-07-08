@@ -4,10 +4,10 @@ import Tesseract from "tesseract.js";
 import './MLScannerCrop.css'
 
 const cropConfig = {
-  x: 0.15,
-  y: 0.30,
-  w: 0.70,
-  h: 0.40
+  x: 0.08,
+  y: 0.20,
+  w: 0.84,
+  h: 0.60
 };
 
 export default function MLScannerCrop() {
@@ -84,13 +84,14 @@ export default function MLScannerCrop() {
   }, [barcode, runOCR]);
 
   return (
-    <div style={{ padding: 20 }}>
-      <h2>Escáner ML con Recorte OCR</h2>
+    <div className="scanner-wrap">
+      <h2 className="scanner-title">Escanear Etiqueta</h2>
 
       <div className="video-wrapper">
         <video
           ref={videoRef}
           autoPlay
+          playsInline
         />
 
         <div
@@ -108,11 +109,27 @@ export default function MLScannerCrop() {
       <canvas ref={cropCanvasRef} style={{ display: "none" }} />
 
       <div className="scanner-result">
-        <h3>Código detectado:</h3>
-        <pre>{barcode || "Esperando..."}</pre>
-
-        <h3>Texto OCR (solo recorte):</h3>
-        <pre>{ocrText || "Procesando..."}</pre>
+        {!barcode ? (
+          <div className="scanner-status-wrapper">
+            <div className="scanner-status-icon waiting" aria-hidden="true">
+              <svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+              </svg>
+            </div>
+            <p className="scanner-status-text">Enfoca el código de barras en el recuadro verde</p>
+          </div>
+        ) : (
+          <>
+            <div className="scanner-result-box">
+              <p className="scanner-result-label">Código de barras</p>
+              <pre className="scanner-result-value">{barcode}</pre>
+            </div>
+            <div className="scanner-result-box">
+              <p className="scanner-result-label">Texto detectado (OCR)</p>
+              <pre className={`scanner-result-value${!ocrText || ocrText === 'Procesando...' ? ' empty' : ''}`}>{ocrText || 'Procesando...'}</pre>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
