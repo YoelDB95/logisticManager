@@ -17,6 +17,7 @@ export default function MLScannerCrop({ onScan }) {
   const ocrTimerRef = useRef(null);
   const lastOcrRef = useRef(0);
 
+  const barcodeRef = useRef(null);
   const [barcode, setBarcode] = useState(null);
   const [ocrText, setOcrText] = useState("");
   const [isScanning, setIsScanning] = useState(false);
@@ -59,11 +60,14 @@ export default function MLScannerCrop({ onScan }) {
 
     try {
       const { data: { text } } = await Tesseract.recognize(imgData, "spa");
-      setOcrText(text);
+      if (text && text.trim()) {
+        setOcrText(text);
+        onScan({ barcode: barcodeRef.current, ocrText: text });
+      }
     } catch (_) {}
 
     setIsScanning(false);
-  }, []);
+  }, [onScan]);
 
   useEffect(() => {
     const reader = new BrowserMultiFormatReader();
@@ -74,6 +78,7 @@ export default function MLScannerCrop({ onScan }) {
       video,
       (result) => {
         if (result) {
+          barcodeRef.current = result.getText();
           setBarcode(result.getText());
         }
       }
@@ -103,12 +108,6 @@ export default function MLScannerCrop({ onScan }) {
       if (ocrTimerRef.current) clearInterval(ocrTimerRef.current);
     };
   }, [barcode, runOCR]);
-
-  useEffect(() => {
-    if (barcode && ocrText && ocrText !== 'Procesando...') {
-      onScan({ barcode, ocrText });
-    }
-  }, [barcode, ocrText, onScan]);
 
   return (
     <div className="scanner-wrap">
