@@ -69,7 +69,6 @@ export const FormLoadPackage = ({ setPackages }) => {
     setData(prev => ({
       ...prev,
       barcode: barcode || prev.barcode,
-      content: barcode || prev.content,
       ...parsed,
     }))
   }
