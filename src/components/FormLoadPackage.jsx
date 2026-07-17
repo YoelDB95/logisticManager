@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async'
-import axios from "axios"
 import { useState, Component } from "react"
+import { createPackage } from "../services/packageService.js"
 import MLScannerCrop from "./MLScannerCrop.jsx"
 import './FormLoadPackage.css'
 
@@ -47,10 +47,9 @@ export const FormLoadPackage = ({ setPackages }) => {
     
     const { address, name, city } = data
     
-    axios
-      .post('http://localhost:3001/api/addresses', {address, name, city})
-      .then(res => setPackages(prev => [...prev, res.data]))
-      .catch(e => console.log(e.response.data))
+    createPackage({address, name, city})
+      .then(data => setPackages(prev => [...prev, data]))
+      .catch(e => console.error(e?.response?.data || e.message))
     
       setData({name: '', address: '', barcode: '', content: '', weight: '', dimension: '', city: ''})
       setErrors({})
@@ -211,7 +210,7 @@ const handleScanResult = ({ barcode, ocrText }) => {
 
           <div className='form-actions'>
             <button type='button' className='btn-outline'>Cancelar</button>
-            <button type='submit' disabled={!enable} className='btn-primary' aria-disabled={!enable}>Guardar Paquete</button>
+            <button type='submit' disabled={!enable} className='btn-primary' aria-disabled={!enable}>Guardar Paquete</button> {/* hacer el post*/ }
           </div>
         </form>
 
