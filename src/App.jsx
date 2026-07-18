@@ -10,6 +10,7 @@ import { Delivery } from './components/Delivery.jsx'
 import { DriverDashboard } from './components/DriverDashboard.jsx'
 import { NotFound } from './components/NotFound.jsx'
 import { SkipLink } from './components/SkipLink.jsx'
+import { AddressDetail } from './components/AddressDetail.jsx'
 
 function App() {
   const [packages, setPackages] = useState([])
@@ -36,6 +37,7 @@ function App() {
           <Route path="/admin" element={<Dashboard packages={packages} />} />
           <Route path="/envios" element={<Delivery packages={packages} />} />
           <Route path="/cargar" element={<FormLoadPackage setPackages={setPackages} />} />
+          <Route path="/direccion/:addressId" element={<AddressDetail packages={packages} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

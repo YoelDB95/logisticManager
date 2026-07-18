@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async'
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts'
 import './Dashboard.css'
 
@@ -190,7 +190,7 @@ export const Dashboard = ({ packages }) => {
 							return hrs === 1 ? 'Hace 1 hora' : `Hace ${hrs} horas`
 						})() : ''
 						return (
-							<div key={i} className="activity-item" role="listitem">
+							<Link key={i} to={`/direccion/${encodeURIComponent(pkg.address)}`} className="activity-item" role="listitem">
 								<div className="activity-left">
 									<span className="activity-icon" style={{ background: `${cfg.color}1a`, color: cfg.color }} aria-hidden="true">
 										<svg fill="currentColor" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
@@ -206,7 +206,7 @@ export const Dashboard = ({ packages }) => {
 									<span className="status-chip" style={{ background: `${cfg.color}1a`, color: cfg.color }}>{cfg.label}</span>
 									<span className="activity-time">{timeAgo}</span>
 								</div>
-							</div>
+							</Link>
 						)
 					})}
 					{recent.length === 0 && <p className="empty-hint">No hay actividad reciente</p>}

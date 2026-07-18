@@ -1,9 +1,11 @@
 import { Helmet } from 'react-helmet-async'
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { Pagination } from "./Pagination"
 import './Delivery.css'
 
 export const Delivery = ({ packages}) => {
+    const navigate = useNavigate()
     const statusCfg = {
         'En ruta':    { color: '#38bdf8', label: 'EN RUTA' },
         'Entregado':  { color: '#10b981', label: 'ENTREGADO' },
@@ -11,7 +13,7 @@ export const Delivery = ({ packages}) => {
     }
     const [filters, setFilters] = useState({packageStatus: '', date: '', consignee: ''})
     const [page, setPage] = useState(0)
-    const totalRows = 4
+    const totalRows = 10
 
     const minIndex = page * totalRows
     const maxIndex = page * totalRows + totalRows
@@ -52,7 +54,7 @@ export const Delivery = ({ packages}) => {
                     <td className="td-muted">{_package.address + ', ' + _package?.city || ''}</td>
                     <td><span className="status-chip" style={{ background: `${cfg.color}1a`, color: cfg.color }}>{cfg.label}</span></td>
                     <td className="td-muted">{new Date(_package?.dateCreatedAt).toLocaleDateString('es-AR') || ''}</td>
-                    <td className="td-actions"><button className="btn-outline">Ver detalle</button></td> 
+                    <td className="td-actions"><button className="btn-outline" onClick={() => navigate(`/direccion/${encodeURIComponent(_package.address)}`)}>Ver detalle</button></td> 
                 </tr>
             )
         })
