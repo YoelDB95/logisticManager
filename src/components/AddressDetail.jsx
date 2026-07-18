@@ -77,7 +77,7 @@ export const AddressDetail = ({ packages }) => {
     <>
       <Helmet>
         <title>{address.address} — Logistic Manager</title>
-        <meta name="description" content={`Detalle de dirección: ${address.address}, ${address.city}. Paquetes asociados a ${address.name}.`} />
+        <meta name="description" content={`Detalle de dirección: ${address.address}, ${address.city}.`} />
       </Helmet>
       <div className="detail-page">
         <button className="detail-back" onClick={() => navigate(-1)}>
@@ -94,10 +94,6 @@ export const AddressDetail = ({ packages }) => {
             <span className="status-chip" style={{ background: `${cfg.color}1a`, color: cfg.color }}>{cfg.label}</span>
           </div>
           <div className="detail-meta">
-            <div className="detail-meta-item">
-              <span className="detail-meta-label">Destinatario</span>
-              <span className="detail-meta-value">{address.name}</span>
-            </div>
             <div className="detail-meta-item">
               <span className="detail-meta-label">Paquetes</span>
               <span className="detail-meta-value">{pkgList.length}</span>

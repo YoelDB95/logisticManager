@@ -11,7 +11,7 @@ export const Delivery = ({ packages}) => {
         'Entregado':  { color: '#10b981', label: 'ENTREGADO' },
         'not delivered': { color: '#f1a02b', label: 'PENDIENTE' },
     }
-    const [filters, setFilters] = useState({packageStatus: '', date: '', consignee: ''})
+    const [filters, setFilters] = useState({packageStatus: '', date: ''})
     const [page, setPage] = useState(0)
     const totalRows = 10
 
@@ -39,9 +39,7 @@ export const Delivery = ({ packages}) => {
             _package?.packages[0]?.status === filters.packageStatus ||
             filters.packageStatus === 'estado-paquete'
         
-        const byConsginee = !filters.consignee || _package.name.includes(filters.consignee)
-        
-        if (byConsginee && byDate && byStatus) return _package
+        if (byDate && byStatus) return _package
     })
 
     const data = (_packages) => {
@@ -50,7 +48,6 @@ export const Delivery = ({ packages}) => {
             const cfg = statusCfg[status] || { color: '#87929a', label: status }
             return (
                 <tr key={i}>
-                    <td className="bold">{_package?.name || ''}</td>
                     <td className="td-muted">{_package.address + ', ' + _package?.city || ''}</td>
                     <td><span className="status-chip" style={{ background: `${cfg.color}1a`, color: cfg.color }}>{cfg.label}</span></td>
                     <td className="td-muted">{new Date(_package?.dateCreatedAt).toLocaleDateString('es-AR') || ''}</td>
@@ -64,11 +61,11 @@ export const Delivery = ({ packages}) => {
         <>
             <Helmet>
                 <title>Envíos — Logistic Manager</title>
-                <meta name="description" content="Gestión de paquetes activos con filtros por estado, fecha y destinatario. Seguimiento de envíos en tiempo real." />
+                <meta name="description" content="Gestión de paquetes activos con filtros por estado y fecha. Seguimiento de envíos en tiempo real." />
                 <meta property="og:title" content="Envíos — Logistic Manager" />
-                <meta property="og:description" content="Gestión de paquetes activos con filtros por estado, fecha y destinatario." />
+                <meta property="og:description" content="Gestión de paquetes activos con filtros por estado y fecha." />
                 <meta name="twitter:title" content="Envíos — Logistic Manager" />
-                <meta name="twitter:description" content="Gestión de paquetes activos con filtros por estado, fecha y destinatario." />
+                <meta name="twitter:description" content="Gestión de paquetes activos con filtros por estado y fecha." />
             </Helmet>
             <div className="delivery-page">
             <div className="page-header">
@@ -101,12 +98,12 @@ export const Delivery = ({ packages}) => {
                         className="filter-btn"
                     />
                     <div className="filter-search">
-                        <label htmlFor="filter-search-input" className="visually-hidden">Buscar por destinatario o ID</label>
+                        <label htmlFor="filter-search-input" className="visually-hidden">Buscar por ID</label>
 						<input
                             id="filter-search-input"
                             type="text"
-                            onChange={e => {setFilters({...filters, consignee: e.target.value}); setPage(0)}}
-                            placeholder="Buscar por Destinatario o ID"
+                            onChange={e => {setPage(0)}}
+                            placeholder="Buscar por ID"
                         />
 					</div>
                 </section>
@@ -116,7 +113,6 @@ export const Delivery = ({ packages}) => {
                         <table>
                             <thead>
                                 <tr>
-                                    <th scope="col">Destinatario</th>
                                     <th scope="col">Destino</th>
                                     <th scope="col">Estado</th>
                                     <th scope="col">Fecha de Carga</th>

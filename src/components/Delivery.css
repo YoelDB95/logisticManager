@@ -140,19 +140,16 @@ tbody tr:hover {
 }
 
 th:nth-child(1),
-td:nth-child(1) { width: 20%; }
+td:nth-child(1) { width: 40%; }
 
 th:nth-child(2),
-td:nth-child(2) { width: 35%; }
+td:nth-child(2) { width: 15%; }
 
 th:nth-child(3),
-td:nth-child(3) { width: 12%; }
+td:nth-child(3) { width: 25%; }
 
 th:nth-child(4),
-td:nth-child(4) { width: 18%; }
-
-th:nth-child(5),
-td:nth-child(5) { width: 15%; }
+td:nth-child(4) { width: 20%; }
 
 .bold {
   font-weight: 600;
@@ -249,9 +246,6 @@ td:nth-child(5) { width: 15%; }
     font-size: 12px;
   }
 
-  th:nth-child(2),
-  td:nth-child(2) { width: 30%; }
-
-  th:nth-child(4),
-  td:nth-child(4) { width: 16%; }
+  th:nth-child(3),
+  td:nth-child(3) { width: 22%; }
 }
