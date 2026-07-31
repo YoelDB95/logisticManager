@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import { useState, Component } from "react"
+import { useNavigate } from 'react-router-dom'
 import { createPackage } from "../services/packageService.js"
 import MLScannerCrop from "./MLScannerCrop.jsx"
 import './FormLoadPackage.css'
@@ -26,6 +27,7 @@ class ScannerErrorBoundary extends Component {
 }
 
 export const FormLoadPackage = ({ setPackages }) => {
+  const navigate = useNavigate()
   const [data, setData] = useState({name: '', address: '', barcode: '', content: '', weight: '', dimension: '', city: ''})
   const [showScanner, setShowScanner] = useState(false)
   const [errors, setErrors] = useState({})
@@ -61,6 +63,13 @@ export const FormLoadPackage = ({ setPackages }) => {
 
   const handleCloseScanner = () => {
     setShowScanner(false)
+  }
+
+  const handleCancel = () => {
+    setData({name: '', address: '', barcode: '', content: '', weight: '', dimension: '', city: ''})
+    setErrors({})
+    setShowScanner(false)
+    navigate('/')
   }
 
 const handleScanResult = ({ barcode, ocrText }) => {
@@ -209,7 +218,7 @@ const handleScanResult = ({ barcode, ocrText }) => {
           </section>
 
           <div className='form-actions'>
-            <button type='button' className='btn-outline'>Cancelar</button>
+            <button type='button' className='btn-outline' onClick={handleCancel}>Cancelar</button>
             <button type='submit' disabled={!enable} className='btn-primary' aria-disabled={!enable}>Guardar Paquete</button> {/* hacer el post*/ }
           </div>
         </form>
